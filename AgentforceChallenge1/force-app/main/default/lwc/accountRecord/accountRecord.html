@@ -1,3 +1,19 @@
 <template>
-    
+    <lightning-card title="Recent Accounts" icon-name="standard:account">
+        
+        <!-- Show accounts if available -->
+        <template if:true={hasAccounts}>
+            <template for:each={formattedAccounts} for:item="acct">
+                <p key={acct.accountId}>
+                    <b>{acct.accountName}</b> - {acct.industry}
+                </p>
+            </template>
+        </template>
+
+        <!-- Show message if no accounts -->
+        <template if:false={hasAccounts}>
+            <p>No Accounts found.</p>
+        </template>
+
+    </lightning-card>
 </template>
