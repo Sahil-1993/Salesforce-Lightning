@@ -1,6 +1,6 @@
 import { LightningElement, api } from 'lwc';
 
-export default class AccountListDisplay extends LightningElement {
+export default class AccountRecord extends LightningElement {
     @api accounts; // receives List<AccountOutputWrapper> from Apex
 
     // True if there are accounts to display

@@ -1,42 +1,29 @@
 public with sharing class AgentAccountRetrieval {
 
-    // Invocable method for Agentforce
     @InvocableMethod(label='Get Recent Accounts')
-    public static List<AccountOutputWrapper> getRecentAccounts(List<AccountInput> limitSizeList) {
+    public static List<AccountOutput> getRecentAccounts(List<AccountInput> inputs) {
 
-        Integer count = (limitSizeList != null && !limitSizeList.isEmpty()) ? limitSizeList[0].limitSize : 10;
-
-        // Fetch Accounts via service
-        List<Account> accounts = AccountService.fetchAccount(count);
-
-        // Map Accounts to wrapper for LWC
-        List<AccountOutputWrapper> output = new List<AccountOutputWrapper>();
-        for (Account acc : accounts) {
-            AccountOutputWrapper wrapper = new AccountOutputWrapper();
-            wrapper.accountId = acc.Id;
-            wrapper.accountName = acc.Name;
-            wrapper.industry = acc.Industry != null ? acc.Industry : 'N/A';
-            output.add(wrapper);
+        Integer limitSize = 10;
+        if (inputs != null && !inputs.isEmpty() && inputs[0].limitSize != null) {
+            limitSize = inputs[0].limitSize;
         }
 
-        return output;
+        List<Account> accounts = AccountService.fetchAccount(limitSize);
+
+        AccountOutput output = new AccountOutput();
+        output.accounts = accounts;
+
+        // IMPORTANT: return List<AccountOutput> with ONE element
+        return new List<AccountOutput>{ output };
     }
 
-    // Input wrapper
     public class AccountInput {
         @InvocableVariable(label='Number of Accounts')
         public Integer limitSize;
     }
 
-    // Output wrapper for LWC
-    public class AccountOutputWrapper {
-        @InvocableVariable(label='Account Id')
-        public Id accountId;
-
-        @InvocableVariable(label='Account Name')
-        public String accountName;
-
-        @InvocableVariable(label='Industry')
-        public String industry;
+    public class AccountOutput {
+        @InvocableVariable(label='Accounts')
+        public List<Account> accounts;
     }
 }
