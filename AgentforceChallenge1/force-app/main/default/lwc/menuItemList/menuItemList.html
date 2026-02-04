@@ -1,0 +1,17 @@
+<template>
+    <lightning-card title="Cafe Menu Items">
+        <!-- Show Menu Items if available -->
+        <template if:true={hasMenuItems}>
+            <template for:each={formattedMenuItems} for:item="item">
+                <p key={item.Name}>
+                    <b>{item.Name}</b> - {item.price__c}
+                </p>
+            </template>
+        </template>
+
+        <!-- Show message if no menu items -->
+        <template if:false={hasMenuItems}>
+            <p>No Menu Items found.</p>
+        </template>
+    </lightning-card>
+</template>
