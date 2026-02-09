@@ -1,0 +1,7 @@
+{
+  "actionType": "apex",
+  "label": "Get Menu Items",
+  "description": "Fetches menu items from the database",
+  "apexClass": "MenuItemController",
+  "apexMethod": "getMenuItems"
+}

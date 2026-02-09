@@ -1,0 +1,5 @@
+{
+  "title" : "Account List Display",
+  "description" : "",
+  "lightning:type" : "@apexClassType/c__AgentAccountRetrieval$AccountOutputWrapper"
+}

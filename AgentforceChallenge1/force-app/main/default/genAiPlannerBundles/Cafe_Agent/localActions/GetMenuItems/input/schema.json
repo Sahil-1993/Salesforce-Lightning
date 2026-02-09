@@ -1,0 +1,11 @@
+{
+  "type": "object",
+  "properties": {
+    "limitSize": {
+      "type": "number",
+      "title": "Limit Size",
+      "description": "Number of menu items to return"
+    }
+  },
+  "required": []
+}

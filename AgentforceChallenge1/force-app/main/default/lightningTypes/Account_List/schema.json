@@ -1,0 +1,5 @@
+{
+  "title" : "Account List",
+  "description" : "",
+  "lightning:type" : "@apexClassType/c__AgentAccountRetrieval$AccountOutput"
+}
